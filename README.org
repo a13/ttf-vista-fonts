@@ -1,0 +1,8 @@
+* Installation
+
+#+NAME: Installation
+#+BEGIN_SRC shell
+sudo apt-get install debhelper fakeroot
+fakeroot debian/rules binary 
+sudo dpkg -i ../ttf-vista-fonts_0.0.1_all.deb
+#+END_SRC

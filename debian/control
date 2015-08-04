@@ -1,0 +1,11 @@
+Source: ttf-vista-fonts
+Section: fonts
+Priority: optional
+Maintainer: Anonymous <anon@anon.org>
+Build-Depends: debhelper (>= 5.0.42), cabextract, wget
+Standards-Version: 3.8.3
+
+Package: ttf-vista-fonts
+Architecture: all
+Depends: ${misc:Depends}
+Description: Microsoft Vista True Type Fonts
