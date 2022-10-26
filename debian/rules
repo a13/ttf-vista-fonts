@@ -17,7 +17,7 @@ extract:
 	iconv -f utf-16 tmp/eula > debian/copyright
 	touch extract
 
-override_dh_install: PowerPointViewer.exe extract
+override_dh_install: PowerPointViewer.exe IELPKTH.CAB extract
 	dh_install -pttf-vista-fonts tmp/*.ttf usr/share/fonts/truetype/ttf-vista-fonts
 	dh_install -pttf-vista-fonts tmp/*.ttc usr/share/fonts/truetype/ttf-vista-fonts
 	dh_install -pttf-vista-fonts debian/50-vista-fonts.conf etc/fonts/conf.avail
