@@ -1,18 +1,23 @@
 #!/usr/bin/make -f
 
 URL=https://web.archive.org/web/20171225132744/http://download.microsoft.com/download/E/6/7/E675FFFC-2A6D-4AB0-B3EB-27C9F8C8F696/PowerPointViewer.exe
+URLIE=https://master.dl.sourceforge.net/project/corefonts/OldFiles/IELPKTH.CAB
 
 PowerPointViewer.exe:
 	wget $(URL)
+
+IELPKTH.CAB:
+	wget $(URLIE)
 
 extract:
 	mkdir -p tmp
 	cabextract --lowercase -d tmp PowerPointViewer.exe
 	cabextract --lowercase -d tmp tmp/ppviewer.cab
+	cabextract --lowercase -d tmp -F 'tahoma*ttf' IELPKTH.CAB
 	iconv -f utf-16 tmp/eula > debian/copyright
 	touch extract
 
-override_dh_install: PowerPointViewer.exe extract
+override_dh_install: PowerPointViewer.exe IELPKTH.CAB extract
 	dh_install -pttf-vista-fonts tmp/*.ttf usr/share/fonts/truetype/ttf-vista-fonts
 	dh_install -pttf-vista-fonts tmp/*.ttc usr/share/fonts/truetype/ttf-vista-fonts
 	dh_install -pttf-vista-fonts debian/50-vista-fonts.conf etc/fonts/conf.avail
